@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="banana.apple.mapper.tmemberMapper">
+
+<insert id="tinsertMember">
+  	insert into tmember (id,password,name,birthd ,gender) values
+  	(#{id}, #{password}, #{name}, #{birthd}||'-'||#{birthd1}||'-'||#{birthd2}, #{gender} )	
+</insert>
+
+<select id="tdetailMember" resultType="com.ncs.green.vo.TmemberVO"> 
+ 		select * from tmember where id=#{id} and password=#{password}
+</select>
+
+<update id="tupdateMember">
+ 	update tmember set password=#{password},name=#{name},birthd=#{birthd},gender=#{gender} where id=#{id}
+ </update>
+<delete id="tdeleteMember">
+ 	delete tmember where id=#{id}
+ </delete>
+<select id="tdetailJoin" resultType="com.ncs.green.vo.TmemberVO"> 
+ 		select * from tmember where id=#{id}
+</select>
+<insert id="tbinsertMember">
+  	insert into tbody (id,height,weight,pushup,situp,weekexercise,doexercise) values
+  	(#{id},#{height},#{weight},#{pushup},#{situp},#{weekexercise},#{doexercise})	
+</insert>
+<select id="tbdetailMember" resultType="com.ncs.green.vo.BodyVO"> 
+ 		select * from tbody where id=#{id}
+</select>
+<update id="tbupdateMember">
+ 	update tbody set height=#{height},weight=#{weight},pushup=#{pushup},situp=#{situp},
+ 	weekexercise=#{weekexercise},doexercise=#{doexercise} where id=#{id}
+</update>
+<delete id="tbdeleteMember">
+ 	delete tbody where id=#{id}
+</delete>
+ 
+<select id="inquiryList" resultType="com.ncs.green.vo.InquiryVO">
+	<![CDATA[ select seq,wid,title,content,
+  	to_char(regdate, 'yyyy/mm/dd') regdate,root,step,indent 
+  	from (select i.* , ROW_NUMBER() OVER(order by root desc, step asc) rnum from inquiry i ) 
+  	where rnum >= #{fno} and rnum <= #{lno} and wid=#{wid}]]>	
+</select>
+
+<select id="totalCount" resultType="integer">
+	select count(*) from inquiry where wid=#{id}	
+</select>
+
+<insert id="insertInquiry">
+  	insert into inquiry (seq, wid, title, content, regdate, root, step, indent) values
+			((select nvl(max(seq),0)+1 from inquiry),#{wid},'['||#{titleF}||'] '||#{title},#{content},sysdate,
+			(select nvl(max(seq),0)+1 from inquiry),0,0)
+</insert>
+ 
+<select id="detailInquiry" resultType="com.ncs.green.vo.InquiryVO"> 
+ 		select seq,wid,title,content,indent from inquiry where seq=#{seq}
+</select>
+
+<update id="updateInquiry">
+ 		update inquiry set title='['||#{titleF}||'] '||#{title}, content=#{content} where seq=#{seq}
+</update>
+
+<delete id="deleteInquiry">
+ 		delete inquiry where seq=#{seq}
+</delete>
+
+</mapper>

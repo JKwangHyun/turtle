@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="banana.apple.mapper.adminMapper">
+
+<select id="tAllList" resultType="com.ncs.green.vo.TmemberVO">
+	<![CDATA[ select * from (select t.* , ROW_NUMBER() OVER(order by name desc) rnum from tmember t ) 
+  	where rnum >= #{fno} and rnum <= #{lno}]]>
+</select>
+
+<delete id="deleteTmember">
+	delete tmember where id=#{id}
+</delete>
+
+<select id="tIList" resultType="com.ncs.green.vo.InquiryVO">
+	<![CDATA[ select seq,wid,title,content,
+  	to_char(regdate, 'yyyy/mm/dd') regdate,root,step,indent 
+  	from (select i.* , ROW_NUMBER() OVER(order by root desc, step asc) rnum from inquiry i ) 
+  	where rnum >= #{fno} and rnum <= #{lno}]]>	
+</select>
+
+<select id="HMList" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[ select seq,wid,title,content,
+  	to_char(regdate, 'yyyy/mm/dd') regdate,root,step,indent 
+  	from (select i.* , ROW_NUMBER() OVER(order by root desc, step asc) rnum from inquiry i ) 
+  	where rnum >= #{fno} and rnum <= #{lno}]]>	
+</select>
+
+<select id="SearchList" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[ select seq,wid,title,content,
+  	to_char(regdate, 'yyyy/mm/dd') regdate,root,step,indent 
+  	from (select i.* , ROW_NUMBER() OVER(order by root desc, step asc) rnum from inquiry i where]]> 
+  	<if test="st.equals('na')">
+  	wid like '%'||#{keyword}||'%')
+  	</if> 
+  	<if test="st.equals('ti')">
+  	title like '%'||#{keyword}||'%')
+  	</if>
+  	<if test="st.equals('co')">
+  	content like '%'||#{keyword}||'%')
+  	</if>
+  	<![CDATA[where rnum >= #{fno} and rnum <= #{lno}]]> 
+</select>
+
+<select id="totalCount" resultType="integer">
+	select count(*) from tmember	
+</select>
+
+<select id="totalCount1" resultType="integer">
+	select count(*) from inquiry	
+</select>
+
+<select id="totalCount2" resultType="integer">
+	select count(*) from inquiry where wid like '%'||#{keyword}||'%'
+</select>
+
+<select id="detailInquiry" resultType="com.ncs.green.vo.InquiryVO"> 
+ 		select seq,wid,title,content,root,step,indent from inquiry where seq=#{seq} 
+</select>
+
+<insert id="insertReply">
+	insert into inquiry (seq, wid, title, content, regdate, root, step, indent) values
+			((select nvl(max(seq),0)+1 from inquiry),#{wid},'답변 입니다.',#{content},sysdate,
+			#{root},#{step},#{indent})
+</insert>
+
+<update id="updateReply">
+ 		update inquiry set content=#{content} where seq=#{seq}
+</update>
+
+</mapper>

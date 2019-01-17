@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+		body {
+			margin: 0px;
+			padding: 0px;
+			z-index:5;
+		}
+		#header1 {
+			position:relative;
+			height:20px;
+			top:10px;
+			margin: 0px auto; 
+			width:1000px;
+			}
+		
+		#header2 {
+			position:relative;
+			top:10px;
+			height:70px;
+			width:1000px;
+			margin: 0px auto; 
+			width:1000px;
+			}
+			
+		#logo {
+			float:left;
+			width:300px;
+			}	
+		#header_content {
+			float:left;
+			width:700px;
+			}
+			
+		#header1 li {
+			float:right;
+			list-style:none;
+			font-size: 10px;
+			font-weight:bold;
+			color:gray;
+			}
+			
+		#header1 a {
+			display:block;
+			padding:0px 10px;
+			text-decoration:none;
+			color:gray;
+			}
+			
+		#header2 li {
+			list-style:none;
+			display:inline-block;
+			font-weight:bold;
+			}	
+		#header_content a {
+			display:block;
+			padding:20px 40px;
+			text-decoration:none;
+			color:black;
+			}
+		#mypage {
+			margin:0px;
+			padding: 0px;
+			position:relative;
+			width: 333px;
+			display: block; 
+			height:400px;
+			float:left;
+			display:block;
+			border:1px solid lightgray;
+			border-top-left-radius  : 20px;
+			border-top-right-radius  : 20px;
+			border-bottom-left-radius  : 20px;
+			border-bottom-right-radius  : 20px;
+		}
+		.a{
+			/* font-size: 20px; */
+			border-top-left-radius  : 20px;
+			border-top-right-radius  : 20px;
+			border-bottom-left-radius  : 20px;
+			border-bottom-right-radius  : 20px;
+			font-size: 10px; color:white;
+		}	
+		td.b{
+			font-size: 10px;border:0px;border-bottom:0.5px solid black;
+			width:40px;
+		}
+		.mypage_wrap {
+			position:relative;
+			margin: 0px auto; 
+			width:1000px;
+			top:-80px;
+			height:367px;
+		}
+		#function {
+			position:relative;
+			left:10px;
+			width: 657px;
+			display: block; 
+			height:400px;
+			float:left;
+		}
+		
+		#slidef {
+			position:relative;
+			width: 657px;
+			display: block; 
+			height:195px;
+		}
+		#exercise {
+			position:relative;
+			top:10px;
+			width: 325px;
+			display: block; 
+			height:195px;
+			float:left;
+			background-image: url("resources/image/exercise.jpg");
+			background-size: 100% 100%;
+			border-top-left-radius  : 20px;
+			border-top-right-radius  : 20px;
+			border-bottom-left-radius  : 20px;
+			border-bottom-right-radius  : 20px;
+		}
+		#stretching {
+			position:relative;
+			top:10px;
+			left:7px;
+			width: 325px;
+			display: block; 
+			height:195px;
+			float:left;
+			background-image: url("resources/image/stretching.jpg");
+			background-size: 100% 100%;
+			border-top-left-radius  : 20px;
+			border-top-right-radius  : 20px;
+			border-bottom-left-radius  : 20px;
+			border-bottom-right-radius  : 20px;
+		}
+		
+		#footer {
+			width:1000px;
+			margin:0 auto;
+			position:relative;
+			top:0px;
+			display: block; 
+			height:30px;
+		}
+		#footer1 li {
+			float:left;
+			list-style:none;
+			font-size: 10px;
+			font-weight:bold;
+			color:gray;
+			}
+			
+		#footer1 a {
+			padding:0px 5px;
+			display:block;
+			text-decoration:none;
+			color:gray;
+			}
+			
+		#footer2 li {
+			float:right;
+			list-style:none;
+			font-size: 10px;
+			font-weight:bold;
+			color:gray;
+			}
+			
+		.slide_down {
+			position:relative;
+			top:-100px;
+			width:1000px;
+			height:200px;
+			margin:0 auto;
+			z-index:100;
+		}
+		.slide_down_img1{
+			float:left;
+			width:333px;
+			height:200px;
+		}
+		.slide_down_img2{
+			float:left;
+			width:333px;
+			height:200px;
+		}
+		.slide_down_img3{
+			float:left;
+			width:333px;
+			height:200px;
+		} 
+		
+	/*슬라이드 몸통 */
+	
+	.slide{
+		   text-align:center; 
+		   top:10px; 
+		   position:relative; 
+		   width: 100%;
+		   margin: 0 auto; 
+		   display: block; 
+		   height:600px;
+		   }
+	
+	.slide_ul{display: block;}
+	.slide_ul>li{position:absolute; top:0; left:0; list-style:none;z-index:10; display: block;width:100%; height:600px;background-size:cover;}
+/*  	.slide_ul>li img{
+		margin: 0 auto;	
+	} */
+	.slide_ul>li.banner_1{background-image:url(resources/image/banner1.png);}
+	.slide_ul>li.banner_2{background-image:url(resources/image/banner2.png);}
+	.slide_ul>li.banner_3{background-image:url(resources/image/banner4.png);}
+	li{list-style: none;
+	}
+	
+	.show{display:block;}
+	
+	/* 하단 동그라미 버튼 CSS*/
+	.slide_btn>li{float: left; margin:0 5px 5px 0;}
+	.slide_btn>li>a{display:block; width: 14px; height:14px; background: url(resources/image/spr.png) -24px -125px; text-indent: -999em; }
+	.slide_btn>li>a.active{background-position: 0 -126px;}
+	.slide_btn{z-index:100; position:absolute; left:46%; bottom:100px; }
+	.slide_btn:after{content:''; display:block; clear:both;}
+	.slide_btn{*zoom:0;}
+	
