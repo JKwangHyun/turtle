@@ -266,7 +266,7 @@ function reset1() {
 		}
 </style>
 
-<title>TurtleNess11111111111111111111111111</title>
+<title>TurtleNess 장광현</title>
 </head>
 <body>
 <div id="header1">
